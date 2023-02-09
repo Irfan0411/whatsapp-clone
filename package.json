@@ -1,7 +1,6 @@
 {
   "name": "whatsapp-clone",
   "version": "0.1.0",
-  "homepage": "https://Irfan0411.github.io/whatsapp-clone",
   "private": true,
   "dependencies": {
     "@ionic/react": "^6.5.1",

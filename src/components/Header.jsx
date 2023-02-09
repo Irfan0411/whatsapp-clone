@@ -8,11 +8,11 @@ const Header = () => {
     const {dispatch} = useContext(HideContext);
     return (
         <header>
-            <a href="#" className="logo">WhatsApp</a>
+            <h1 className="logo">WhatsApp</h1>
             <div className="action">
-                <a href="#"><IonIcon icon={cameraOutline}/></a>
-                <a href="#"><IonIcon icon={searchOutline}/></a>
-                <a href="#" onClick={()=>dispatch("OPEN_TOOLBOX")}><IonIcon icon={ellipsisVertical}/></a>
+                <IonIcon icon={cameraOutline}/>
+                <IonIcon icon={searchOutline}/>
+                <IonIcon onClick={()=>dispatch("OPEN_TOOLBOX")} icon={ellipsisVertical}/>
             </div>
         </header>
     )
