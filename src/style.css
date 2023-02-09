@@ -39,7 +39,7 @@ header .action{
     gap: 15px;
     position: relative;
 }
-header .action a{
+header .action span{
     color: #fff;
     font-size: 1.5em;
     text-decoration: none;

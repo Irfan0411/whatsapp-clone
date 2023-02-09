@@ -10,9 +10,9 @@ const Header = () => {
         <header>
             <h1 className="logo">WhatsApp</h1>
             <div className="action">
-                <a href="#"><IonIcon icon={cameraOutline}/></a>
-                <a href="#"><IonIcon icon={searchOutline}/></a>
-                <a href="#"><IonIcon onClick={()=>dispatch("OPEN_TOOLBOX")} icon={ellipsisVertical}/></a>
+                <span><IonIcon icon={cameraOutline}/></span>
+                <span><IonIcon icon={searchOutline}/></span>
+                <span><IonIcon onClick={()=>dispatch("OPEN_TOOLBOX")} icon={ellipsisVertical}/></span>
             </div>
         </header>
     )
