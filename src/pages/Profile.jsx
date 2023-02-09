@@ -42,10 +42,8 @@ const Profile = () => {
 
   useEffect(() => {
     const handleChange = () => {
-      if (photo === null) {
-        console.log('tidak ada foto')
-      } else {
-        try {
+      if (photo !== null) {
+          try {
           setIsLoading(true);
           const date = new Date().getTime();
           const storageRef = ref(storage, currentUser.displayName + date);
@@ -71,16 +69,14 @@ const Profile = () => {
                     setPhotoProfile(currentUser.photoURL);
                     setIsLoading(false);
                   } catch (error) {
-                    console.log('error update link');
                     console.log(error)
                   }
                 })
             })
         } catch (error) {
-          console.log('error upload foto')
           console.log(error)
         }
-  
+
       }
     }
   
