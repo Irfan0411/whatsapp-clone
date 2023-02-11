@@ -1,9 +1,25 @@
-import React, { useContext } from 'react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { ChatListContext } from '../context/ChatListContext';
+import { db } from '../firebase';
 import BlockChat from './BlockChat';
 
 const BoxChats = () => {
-  const {chats} = useContext(ChatListContext);
+  const {currentUser} = useContext(AuthContext);
+  const [chats, setChats] = useState({});
+  const {dispatch} = useContext(ChatListContext);
+  useEffect(()=>{
+      const getChats = ()=>{
+          onSnapshot(doc(db, "userChats", currentUser.uid), (doc)=>{
+              setChats(doc.data());
+              dispatch({type: "CONNECT", payload: doc.data()});
+          })
+      }
+      currentUser.uid && getChats();
+      // eslint-disable-next-line
+  },[currentUser.uid])
+
 
   return (
     <div className="box chats">

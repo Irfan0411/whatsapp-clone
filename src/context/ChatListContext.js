@@ -1,23 +1,24 @@
-import { doc, onSnapshot } from "firebase/firestore";
-import { createContext, useContext, useEffect, useState } from "react";
-import { db } from "../firebase";
-import { AuthContext } from "./AuthContext";
+import { createContext, useReducer } from "react";
 
 export const ChatListContext = createContext();
 export const ChatListContextProvider = ({children})=>{
-    const {currentUser} = useContext(AuthContext);
-    const [chats, setChats] = useState(null);
-    useEffect(()=>{
-        const getChats = ()=>{
-            onSnapshot(doc(db, "userChats", currentUser.uid), (doc)=>{
-                setChats(doc.data());
-            })
+    const INITIAL_STATE = {
+        chats: {}
+    }
+    const chatListReducer = (state, action)=>{
+        switch (action.type) {
+            case "CONNECT":
+                return {
+                    chats: action.payload
+                }
+            default: return state
         }
-        currentUser.uid && getChats();
-    }, [currentUser.uid])
+    }
+
+    const [state, dispatch] = useReducer(chatListReducer, INITIAL_STATE);
         
     return(
-        <ChatListContext.Provider value={{chats}} >
+        <ChatListContext.Provider value={{chats: state.chats, dispatch}} >
             {children}
         </ChatListContext.Provider>
     )

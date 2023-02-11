@@ -8,7 +8,7 @@ export const HideContextProvider = ({children})=>{
     }
     const hideReducer = (state, action)=>{
         switch (action) {
-            case "HIDE_TOOLBOX":
+            case "HIDE":
                 return{
                     hideToolbox: true,
                     hideAdd: true
@@ -16,11 +16,6 @@ export const HideContextProvider = ({children})=>{
             case "OPEN_TOOLBOX":
                 return{
                     hideToolbox: false,
-                    hideAdd: true
-                }
-            case "HIDE_ADD":
-                return{
-                    hideToolbox: true,
                     hideAdd: true
                 }
             case "OPEN_ADD":

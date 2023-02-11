@@ -26,10 +26,10 @@ const Home = ()=> {
         <MessageInput />
       </div>
       <div className={`toolbox ${hide.hideToolbox ? 'hide': ''}`}>
-        <button onClick={()=>{navigate("/profile"); dispatch("HIDE_TOOLBOX")}}>Edit Profile</button>
+        <button onClick={()=>{navigate("/profile"); dispatch("HIDE")}}>Edit Profile</button>
         <button onClick={()=>{dispatch("OPEN_ADD")}}>Add Chat</button>
-        <button onClick={()=>{signOut(auth); dispatch("HIDE_TOOLBOX")}}>Log Out</button>
-        <button onClick={()=>dispatch("HIDE_TOOLBOX")}>Close</button>
+        <button onClick={()=>{signOut(auth); dispatch("HIDE")}}>Log Out</button>
+        <button onClick={()=>dispatch("HIDE")}>Close</button>
       </div>
       <AddChat />
     </div>

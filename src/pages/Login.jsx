@@ -28,7 +28,7 @@ const Login = () => {
                 <div className="wrap">
                     <IonIcon icon={logoWhatsapp} />
                     <h3>WhatsApp Clone</h3>
-                    <span>Register</span>
+                    <span>Login</span>
                     <br/><br/>
                     <form onSubmit={handleSubmit}>
                         <div className="wave-group">

@@ -59,12 +59,14 @@ const AddChat = () => {
                 },
                 [combinedId+".date"]: serverTimestamp()
             })
-        } else { console.log(res.data());}
+        }
         setUser(null);
+        dispatch("HIDE")
+
     }
     return (
         <div className={`addChat ${hide.hideAdd ? 'hide' : ''} ${data.hideChat ? '' : 'none'}`}>
-            <span className="close" onClick={()=>dispatch("HIDE_ADD")}><IonIcon icon={arrowBack} /> Add Chat</span>
+            <span className="close" onClick={()=>dispatch("HIDE")}><IonIcon icon={arrowBack} /> Add Chat</span>
             <br /> <br />
             <div className="searchForm">
                 <div className="wave-group">
