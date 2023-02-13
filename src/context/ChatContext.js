@@ -23,6 +23,15 @@ export const ChatContextProvider = ({children})=>{
                         : action.payload.uid + currentUser.uid,
                     hideChat: false
                 }
+            case "PUBLIC_CHAT":
+                return {
+                    user: {
+                        displayName: "Public Chat",
+                        photoURL: "https://firebasestorage.googleapis.com/v0/b/chat-3191a.appspot.com/o/global.svg?alt=media&token=392220e5-20ec-4580-8ea0-07e007d06587"
+                    },
+                    chatId: "globalChat",
+                    hideChat: false
+                }
             case "HIDE_CHAT":
                 return INITIAL_STATE
             default : return state;

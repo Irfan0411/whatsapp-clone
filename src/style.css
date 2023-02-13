@@ -82,6 +82,12 @@ header .action span{
     padding: 20px;
     transition: 0.5s;
 }
+.addChat .search{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    font-size: 20px;
+}
 .addChat.hide,
 .changeName.hide{
     top: 100%;
@@ -479,7 +485,17 @@ header .action span{
 .messagebox .time{
     font-size: 0.8em;
 }
-
+.messagebox .displayname{
+    font-size: 0.8em;
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    font-weight: 600;
+    color: blueviolet;
+}
+.messagebox .message p.public{
+    margin-top: 10px;
+}
 .messageInput{
     position: absolute;
     bottom: 0;
@@ -782,8 +798,8 @@ width: 100%;
     border: 4px solid #00806986;
     border-left-color: transparent;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
     animation: spin89345 1s linear infinite;
 }  
   @keyframes spin89345 {
@@ -820,6 +836,5 @@ width: 100%;
 .changeName .loader{
     right: 20px;
     margin-top: -30px;
-    width: 20px;
-    height: 20px;
 }
+

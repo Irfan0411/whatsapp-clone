@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { IonIcon } from "@ionic/react";
-import { arrowBack } from "ionicons/icons";
+import { arrowBack, arrowForward } from "ionicons/icons";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore';
 import { db } from '../firebase';
 import { HideContext } from '../context/HideContext';
@@ -14,11 +14,13 @@ const AddChat = () => {
     const [username, setUsername] = useState("");
     const [user, setUser] = useState(null);
     const {currentUser} = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleKey = (e) => {
-        e.code === "Enter" && handleSearch();
-    }
+    // const handleKey = (e) => {
+    //     e.code === "Enter" && handleSearch();
+    // }
     const handleSearch = async () => {
+        setIsLoading(true);
         const q = query(
             collection(db, "user"),
             where("displayName", "==", username)
@@ -28,6 +30,8 @@ const AddChat = () => {
             querySnapshot.empty ? setUser(null) : querySnapshot.forEach((doc) => setUser(doc.data()));
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     }
     const handleSelect = async ()=>{
@@ -74,7 +78,8 @@ const AddChat = () => {
                         className="input"
                         value={username}
                         onChange={(e)=>setUsername(e.target.value)}
-                        onKeyDown={handleKey} />
+                         />
+                         {isLoading ? (<span className="search loader"></span>) : (<span className="search" onClick={handleSearch}><IonIcon icon={arrowForward} /></span>)}
                     <span className="bar"></span>
                     <label className="label">
                         <span className="label-char" style={{ "--index": 0 }}>S</span>

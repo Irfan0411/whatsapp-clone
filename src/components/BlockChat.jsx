@@ -4,7 +4,11 @@ import { ChatContext } from '../context/ChatContext';
 const BlockChat = ({photoURL, displayName, lastMessage, payload}) => {
     const {dispatch} = useContext(ChatContext);
     const handleSelect = ()=>{
-        dispatch({type: "OPEN_CHAT", payload: payload})
+        if(displayName === "Public Chat"){
+             dispatch({type: "PUBLIC_CHAT", payload: {}})
+        } else {
+            dispatch({type: "OPEN_CHAT", payload})
+        }
     }
   return (
     <div className="block" onClick={handleSelect}>

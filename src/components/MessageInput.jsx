@@ -3,9 +3,10 @@ import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase
 import { happyOutline, attachOutline, camera, mic, sendSharp } from 'ionicons/icons';
 import React, { useContext, useState } from 'react';
 import { ChatContext } from '../context/ChatContext';
-import { db } from '../firebase';
+import { database, db } from '../firebase';
 import { v4 as uuid } from 'uuid' 
 import { AuthContext } from '../context/AuthContext';
+import { push, ref, set } from 'firebase/database';
 
 const MessageInput = () => {
   const [text, setText] = useState('');
@@ -18,6 +19,17 @@ const MessageInput = () => {
     } else {
       try {
         setIsSend(true);
+        if(data.chatId === "globalChat"){
+          await set(push(ref(database, "globalChat")), {
+            text,
+            senderId: currentUser.uid,
+            date: serverTimestamp(),
+            displayName: currentUser.displayName
+          })
+          await updateDoc(doc(db, "chats", "globalChat"),{
+            lastMessage: text
+          })
+        } else {
         await updateDoc(doc(db, "chats", data.chatId),{
           messages: arrayUnion({
             id: uuid(),
@@ -34,6 +46,7 @@ const MessageInput = () => {
           [data.chatId + ".lastMessage"]: {text},
           [data.chatId + ".date"]: serverTimestamp()
         })
+        }
         setText('');
         setIsSend(false);
       } catch (error) {
